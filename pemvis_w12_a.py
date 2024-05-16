@@ -85,34 +85,46 @@ class DataInOut:
         frame3 = Frame(frame1)
         frame3.grid(row=2, column=0)
 
-        FirstNum = StringVar()
-        SecondNum = StringVar()
-        Hasil = StringVar()
+        self.FirstNum = StringVar()
+        self.SecondNum = StringVar()
+        self.Hasil = StringVar()
 
         self.lblFirstNum = Label(frame2, text ='Masukan First Number')
         self.lblFirstNum.grid(row=0, column=0)
-        self.txtFirstNum = Entry(frame2, textvariable=FirstNum)
+        self.txtFirstNum = Entry(frame2, textvariable=self.FirstNum)
         self.txtFirstNum.grid(row=0, column=1)
 
         self.lblSecondNum = Label(frame2, text='Masukan Second Number')
         self.lblSecondNum.grid(row= 1,column=0) 
-        self.txtSecondNum = Entry(frame2, textvariable=SecondNum)
+        self.txtSecondNum = Entry(frame2, textvariable=self.SecondNum)
         self.txtSecondNum.grid(row=1, column=1)
 
         self.lblHasil = Label(frame2, text ='Hasil')
         self.lblHasil.grid(row=2, column=0)
-        self.txtHasil = Entry(frame2, textvariable=Hasil)
+        self.txtHasil = Label(frame2, textvariable=self.Hasil)
         self.txtHasil.grid(row=2,column=1)
 
-        def plus():
-            pertama = float(FirstNum.get())
-            kedua   = float(SecondNum.get())
+        self.btnJumlahkan = Button(frame3, text="Jumlahkan", command=self.Jumlahkan)
+        self.btnJumlahkan.grid(row=2, column=0)
+        self.btnReset = Button(frame3, text="Reset", command=self.Reset)
+        self.btnReset.grid(row=2, column=1)
+        self.btnKeluar = Button(frame3, text="Keluar", command=self.root.destroy)
+        self.btnKeluar.grid(row=2, column=2)
+
+    def Jumlahkan(self):
+        try:
+            pertama = float(self.FirstNum.get())
+            kedua = float(self.SecondNum.get())
             hasil = pertama + kedua
-            Hasil.set(hasil)
-        
-        self.btnPls = Button(frame3, text='Jumlahkan').grid(row=2,column=0)
-        self.btnReset = Button(frame3, text='Reset').grid(row=2,column=1)
-        self.btnKeluar = Button(frame3, text='Keluar').grid(row=2,column=2)
+            self.Hasil.set(str(hasil))
+        except ValueError:
+            tkinter.messagebox.showerror('Error', 'Masukkan angka yang valid')
+
+    def Reset(self):
+        self.FirstNum.set('')
+        self.SecondNum.set('')
+        self.Hasil.set('')
+
 
 if __name__ == '__main__':
     root = Tk()
