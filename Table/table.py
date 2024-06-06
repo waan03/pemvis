@@ -5,9 +5,9 @@ from tkinter import simpledialog
 root = tk.Tk()
 root.title("Tabel")
 data = [
-   ["Bobby",26,20000],
-   ["Harrish",31,23000],
-   ["Jaya",18,19000],
+   ["Vinsen",58,20000],
+   ["Budi",31,23000],
+   ["BARTO",18,19000],
    ["Mark",22, 20500],
 ]
 index=0
